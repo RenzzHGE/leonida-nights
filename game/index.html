@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LEONIDA NIGHTS — Vice City open-world crime game</title>
+<link rel="stylesheet" href="./style.css">
+<script type="importmap">
+{ "imports": { "three": "./vendor/three.module.min.js" } }
+</script>
+</head>
+<body>
+<div id="game-root"></div>
+
+<!-- HUD -->
+<div id="hud" class="hidden">
+  <div id="hud-top-left">
+    <div id="cash-row"><span class="label">CASH</span><span id="cash">$0</span></div>
+    <div id="rep-row"><span class="label">REP</span><div id="rep-bar"><div id="rep-fill"></div></div><span id="rank">Street Rookie</span></div>
+  </div>
+  <div id="hud-top-right">
+    <div id="wanted"><span class="label">WANTED</span><span id="stars"></span></div>
+    <div id="clock">02:14 AM</div>
+  </div>
+  <div id="hud-top-center"><div id="job-banner" class="hidden"></div></div>
+  <div id="hud-bottom-left"><canvas id="minimap" width="220" height="220"></canvas></div>
+  <div id="hud-bottom-right">
+    <div id="speed"><span id="speed-num">0</span><span id="speed-unit">MPH</span></div>
+    <div id="car-name">Sunset Sedan</div>
+  </div>
+  <div id="hud-center"><div id="message"></div><div id="prompt"></div></div>
+  <div id="controls-hint">WASD drive / walk &nbsp;·&nbsp; SPACE handbrake &nbsp;·&nbsp; F exit car &nbsp;·&nbsp; E steal / start job &nbsp;·&nbsp; G garage &nbsp;·&nbsp; ESC pause</div>
+</div>
+
+<!-- Title / menu screen -->
+<div id="menu">
+  <div id="menu-inner">
+    <div id="menu-kicker">VICE CITY &middot; LEONIDA &middot; 2 AM</div>
+    <h1 id="menu-title">LEONIDA<br><span>NIGHTS</span></h1>
+    <p id="menu-tag">Drive. Hustle. Outrun the law. Become a Leonida Legend.</p>
+    <button id="btn-play" class="menu-btn">START ENGINE</button>
+    <button id="btn-continue" class="menu-btn hidden">CONTINUE</button>
+    <div id="menu-stats"></div>
+    <div id="menu-how">
+      <div><b>WASD</b> drive &amp; walk</div>
+      <div><b>E</b> steal a car / start a job</div>
+      <div><b>F</b> get in &amp; out of your car</div>
+      <div><b>SPACE</b> handbrake drift</div>
+      <div><b>G</b> garage — buy cars &amp; upgrades</div>
+      <div><b>ESC</b> pause</div>
+    </div>
+    <p id="menu-foot">An original open-world crime game. No Rockstar content. Best played with sound on.</p>
+  </div>
+</div>
+
+<!-- Pause / garage screen -->
+<div id="pause" class="hidden">
+  <div id="pause-inner">
+    <h2>PAUSED</h2>
+    <div id="pause-stats"></div>
+    <h3>GARAGE — LEONIDA MOTORS</h3>
+    <div id="garage"></div>
+    <h3>UPGRADES</h3>
+    <div id="upgrades"></div>
+    <button id="btn-resume" class="menu-btn">RESUME</button>
+    <button id="btn-restart" class="menu-btn">RESTART NIGHT</button>
+    <button id="btn-quit" class="menu-btn">QUIT TO MENU</button>
+  </div>
+</div>
+
+<!-- Busted / rank-up overlay -->
+<div id="overlay" class="hidden"><div id="overlay-inner"></div></div>
+
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>

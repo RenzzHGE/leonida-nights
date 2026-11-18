@@ -1,0 +1,67 @@
+/* LEONIDA NIGHTS — neon night HUD and menus. All art is code: no images. */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 100%; height: 100%; overflow: hidden; background: #070312; }
+body { font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; color: #f2ecff; }
+#game-root, #game-root canvas { position: absolute; inset: 0; display: block; }
+.hidden { display: none !important; }
+
+/* ---------- HUD ---------- */
+#hud { position: absolute; inset: 0; pointer-events: none; z-index: 5; text-shadow: 0 2px 6px rgba(0,0,0,.8); }
+.label { font-size: 11px; letter-spacing: 2px; color: #ff9de2; font-weight: 700; }
+#hud-top-left { position: absolute; top: 16px; left: 18px; }
+#cash-row { font-size: 30px; font-weight: 800; color: #7dffb0; }
+#cash-row .label { margin-right: 8px; }
+#rep-row { display: flex; align-items: center; gap: 8px; margin-top: 6px; }
+#rep-bar { width: 150px; height: 10px; background: rgba(255,255,255,.18); border-radius: 5px; overflow: hidden; }
+#rep-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #ff2e88, #ff9de2, #37e0ff); transition: width .4s; }
+#rank { font-size: 13px; font-weight: 700; color: #ffd166; }
+#hud-top-right { position: absolute; top: 16px; right: 18px; text-align: right; }
+#stars { font-size: 26px; letter-spacing: 3px; color: #ffd166; min-height: 30px; display: inline-block; }
+#stars .lit { color: #ff3355; text-shadow: 0 0 12px #ff3355; }
+#stars .dim { color: rgba(255,255,255,.25); }
+#clock { font-size: 15px; font-weight: 700; color: #bfe9ff; margin-top: 2px; }
+#hud-top-center { position: absolute; top: 14px; left: 50%; transform: translateX(-50%); text-align: center; }
+#job-banner { background: rgba(10,4,32,.78); border: 1px solid #ff2e88; border-radius: 10px; padding: 8px 18px; font-size: 15px; font-weight: 700; color: #fff; box-shadow: 0 0 22px rgba(255,46,136,.45); }
+#job-banner .sub { display: block; font-size: 12px; color: #ffd166; font-weight: 600; margin-top: 2px; }
+#hud-bottom-left { position: absolute; left: 18px; bottom: 18px; }
+#minimap { border-radius: 50%; border: 3px solid rgba(255,46,136,.75); box-shadow: 0 0 24px rgba(255,46,136,.35); background: #0a0620; }
+#hud-bottom-right { position: absolute; right: 22px; bottom: 18px; text-align: right; }
+#speed-num { font-size: 46px; font-weight: 800; color: #fff; line-height: 1; }
+#speed-unit { font-size: 13px; color: #ff9de2; font-weight: 700; margin-left: 6px; }
+#car-name { font-size: 14px; color: #bfe9ff; font-weight: 600; margin-top: 2px; }
+#hud-center { position: absolute; left: 50%; top: 58%; transform: translateX(-50%); text-align: center; width: 640px; }
+#message { font-size: 22px; font-weight: 800; color: #ffd166; min-height: 30px; }
+#prompt { font-size: 15px; font-weight: 700; color: #7dffb0; min-height: 22px; margin-top: 4px; }
+#controls-hint { position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); font-size: 11px; color: rgba(255,255,255,.55); letter-spacing: .4px; white-space: nowrap; }
+
+/* ---------- Menus ---------- */
+#menu, #pause, #overlay { position: absolute; inset: 0; z-index: 10; display: flex; align-items: center; justify-content: center; }
+#menu { background: radial-gradient(ellipse at 50% 120%, rgba(255,46,136,.35), transparent 55%), radial-gradient(ellipse at 50% -20%, rgba(55,224,255,.28), transparent 55%), linear-gradient(180deg, rgba(7,3,18,.25), rgba(7,3,18,.88)); }
+#menu-inner, #pause-inner { text-align: center; max-width: 640px; padding: 24px; }
+#menu-kicker { letter-spacing: 6px; font-size: 12px; color: #37e0ff; font-weight: 700; }
+#menu-title { font-size: 84px; line-height: .9; font-weight: 900; font-style: italic; color: #fff; text-shadow: 0 0 28px #ff2e88, 0 0 60px #ff2e88; margin: 10px 0 6px; }
+#menu-title span { color: #ff9de2; }
+#menu-tag { font-size: 17px; color: #d9f6ff; margin-bottom: 22px; }
+.menu-btn { pointer-events: auto; cursor: pointer; display: block; margin: 10px auto; min-width: 260px; padding: 13px 26px; font-size: 17px; font-weight: 800; letter-spacing: 2px; color: #fff; background: linear-gradient(90deg, #ff2e88, #b537f2); border: 2px solid #ff9de2; border-radius: 10px; box-shadow: 0 0 22px rgba(255,46,136,.5); }
+.menu-btn:hover { filter: brightness(1.2); }
+.menu-btn:disabled { opacity: .45; cursor: default; }
+#menu-stats { margin: 16px 0 4px; font-size: 14px; color: #ffd166; font-weight: 700; min-height: 20px; }
+#menu-how { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 22px; text-align: left; margin: 18px auto 6px; max-width: 520px; font-size: 13.5px; color: #cfe6ff; }
+#menu-how b { color: #ff9de2; }
+#menu-foot { margin-top: 14px; font-size: 12px; color: rgba(255,255,255,.5); }
+#pause { background: rgba(5,2,16,.82); backdrop-filter: blur(3px); }
+#pause-inner { width: 640px; }
+#pause h2 { font-size: 40px; font-style: italic; letter-spacing: 4px; color: #ff9de2; text-shadow: 0 0 18px #ff2e88; }
+#pause h3 { margin: 18px 0 8px; font-size: 15px; letter-spacing: 3px; color: #37e0ff; }
+#pause-stats { margin-top: 8px; font-size: 14px; color: #ffd166; font-weight: 700; }
+.shop-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.14); border-radius: 8px; padding: 9px 12px; margin: 6px 0; font-size: 14px; text-align: left; }
+.shop-row .nm { font-weight: 800; }
+.shop-row .ds { color: #bfe9ff; font-size: 12.5px; }
+.buy-btn { pointer-events: auto; cursor: pointer; padding: 7px 14px; border-radius: 7px; border: 1px solid #7dffb0; background: rgba(125,255,176,.14); color: #7dffb0; font-weight: 800; font-size: 13px; white-space: nowrap; }
+.buy-btn:disabled { opacity: .4; cursor: default; }
+#overlay { background: rgba(5,2,16,.72); }
+#overlay-inner { text-align: center; }
+#overlay-inner h2 { font-size: 56px; font-style: italic; color: #ff3355; text-shadow: 0 0 26px #ff3355; }
+#overlay-inner p { font-size: 18px; margin-top: 10px; color: #fff; }
+#overlay-inner .big { font-size: 64px; color: #ffd166; text-shadow: 0 0 26px #ffb703; }
+@media (max-width: 760px) { #menu-title { font-size: 56px; } #hud-center { width: 92vw; } }
